@@ -5,3 +5,8 @@
 [Bb]uilds/
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
+*.vsidx
+JuegoGPC/.vs/JuegoGPC.slnx/v18/.suo
+*.v2
+*.json
+*.bin
