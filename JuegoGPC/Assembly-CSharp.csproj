@@ -51,7 +51,9 @@
   <ItemGroup>
     <Compile Include="Assets\Script\VillaVida.cs" />
     <Compile Include="Assets\Script\CicloDiaNoche.cs" />
+    <Compile Include="Assets\Script\EstacionVida.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Script\GeneradorEstacionEspacialToon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
