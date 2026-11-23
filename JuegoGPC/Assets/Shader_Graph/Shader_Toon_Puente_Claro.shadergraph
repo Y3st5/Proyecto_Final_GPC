@@ -33,6 +33,9 @@
         },
         {
             "m_Id": "a2ce36e448534e978f260377b097892c"
+        },
+        {
+            "m_Id": "c5c3a097fed04c65bd81ca0faf28551a"
         }
     ],
     "m_Nodes": [
@@ -1016,8 +1019,8 @@
     "m_ObjectId": "55d9baa4da8544beb53af33d7f3ebc2a",
     "m_Title": "1. Sombreado Toon Madera Clara (Puente)",
     "m_Position": {
-        "x": -465.00006103515627,
-        "y": 61.00000762939453
+        "x": -464.99993896484377,
+        "y": 60.9999885559082
     }
 }
 
@@ -1034,7 +1037,7 @@
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 2,
+    "m_RenderFace": 0,
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
@@ -1651,6 +1654,36 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "VertexDescription.Tangent"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "c5c3a097fed04c65bd81ca0faf28551a",
+    "m_Name": "",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "5baebd225917478a96420980eace67a8"
+        },
+        {
+            "m_Id": "3adec8a5572540d78993524dc69a7f11"
+        },
+        {
+            "m_Id": "cfe8295fdd5f4b468530a1b8da4d7fdd"
+        },
+        {
+            "m_Id": "51986a9a92334cda9987f7fc3c915e21"
+        },
+        {
+            "m_Id": "98153e486250401b86c580d53f4e3105"
+        },
+        {
+            "m_Id": "03cbb9d0aef540c69d2721663c00827f"
+        },
+        {
+            "m_Id": "3ffecc19b98447a093d25b3195e6ef35"
+        }
+    ]
 }
 
 {
