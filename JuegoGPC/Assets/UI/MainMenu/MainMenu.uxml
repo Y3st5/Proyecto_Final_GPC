@@ -1,0 +1,170 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Style src="project://database/Assets/UI/MainMenu/MainMenu.uss" />
+
+    <!-- ==========================================================
+         MENÚ PRINCIPAL
+         Panel lateral translúcido sobre la escena 3D.
+         El centro y la derecha quedan libres para ver el escenario.
+         ========================================================== -->
+    <ui:VisualElement name="main-menu-root" class="menu-root">
+
+        <!-- Panel lateral -->
+        <ui:VisualElement class="side-panel">
+            <ui:VisualElement class="side-panel__glow" picking-mode="Ignore" />
+            <ui:VisualElement class="side-panel__glow side-panel__glow--warm" picking-mode="Ignore" />
+
+            <ui:VisualElement class="side-panel__content">
+
+                <!-- Marca -->
+                <ui:VisualElement class="brand">
+                    <ui:VisualElement class="brand__mark">
+                        <ui:Label text="GPC" class="brand__mark-text" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="brand__text">
+                        <ui:Label text="PROYECTO FINAL" class="brand__eyebrow" />
+                        <ui:Label text="VALLE TOON" class="brand__name" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- Título -->
+                <ui:VisualElement class="hero">
+                    <ui:VisualElement class="hero__rule" picking-mode="Ignore" />
+                    <ui:VisualElement class="hero__title-row">
+                        <ui:Label text="Juego" class="hero__title" />
+                        <ui:Label text="GPC" class="hero__title hero__title--accent" />
+                    </ui:VisualElement>
+                    <ui:Label text="Un paseo por el valle  ·  v1.0" class="hero__subtitle" />
+                    <ui:Label text="Cruza el puente, sigue el río y descubre la casa entre los árboles. Una experiencia toon para perderse un rato." class="hero__description" />
+                </ui:VisualElement>
+
+                <!-- Navegación principal -->
+                <ui:VisualElement class="nav">
+
+                    <ui:Button name="btn-play" class="menu-button menu-button--primary" tooltip="Comenzar la aventura">
+                        <ui:Label text="01" class="menu-button__index" picking-mode="Ignore" />
+                        <ui:Label text="Jugar" class="menu-button__label" picking-mode="Ignore" />
+                        <ui:Label text="Empezar la aventura" class="menu-button__hint" picking-mode="Ignore" />
+                        <ui:Label text="›" class="menu-button__arrow" picking-mode="Ignore" />
+                    </ui:Button>
+
+                    <ui:Button name="btn-options" class="menu-button" tooltip="Audio y gráficos">
+                        <ui:Label text="02" class="menu-button__index" picking-mode="Ignore" />
+                        <ui:Label text="Opciones" class="menu-button__label" picking-mode="Ignore" />
+                        <ui:Label text="Audio y gráficos" class="menu-button__hint" picking-mode="Ignore" />
+                        <ui:Label text="›" class="menu-button__arrow" picking-mode="Ignore" />
+                    </ui:Button>
+
+                    <ui:Button name="btn-credits" class="menu-button" tooltip="Conoce al equipo">
+                        <ui:Label text="03" class="menu-button__index" picking-mode="Ignore" />
+                        <ui:Label text="Créditos" class="menu-button__label" picking-mode="Ignore" />
+                        <ui:Label text="Quiénes hicieron esto" class="menu-button__hint" picking-mode="Ignore" />
+                        <ui:Label text="›" class="menu-button__arrow" picking-mode="Ignore" />
+                    </ui:Button>
+
+                    <ui:Button name="btn-quit" class="menu-button" tooltip="Cerrar el juego">
+                        <ui:Label text="04" class="menu-button__index" picking-mode="Ignore" />
+                        <ui:Label text="Salir" class="menu-button__label" picking-mode="Ignore" />
+                        <ui:Label text="Cerrar el juego" class="menu-button__hint" picking-mode="Ignore" />
+                        <ui:Label text="›" class="menu-button__arrow" picking-mode="Ignore" />
+                    </ui:Button>
+
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Pie del panel -->
+            <ui:VisualElement class="side-footer-group">
+                <ui:VisualElement class="side-footer">
+                    <ui:Label text="v1.0.0" class="side-footer__version" />
+                    <ui:VisualElement class="side-footer__dot" picking-mode="Ignore" />
+                    <ui:Label name="scene-label" text="ESCENA · SAMPLESCENE" class="side-footer__scene" />
+                </ui:VisualElement>
+                <ui:Label text="Tab para navegar  ·  Enter para elegir" class="side-hint" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- Información de contexto sobre la escena -->
+        <ui:VisualElement class="scene-chip" picking-mode="Ignore">
+            <ui:VisualElement class="scene-chip__dot" />
+            <ui:Label text="VILLA TOON  ·  RÍO Y PUENTE" class="scene-chip__label" />
+        </ui:VisualElement>
+
+        <ui:Label text="UI TOOLKIT  ·  URP" class="corner-note" picking-mode="Ignore" />
+
+        <!-- ======================================================
+             CAPA MODAL (Opciones y Créditos)
+             ====================================================== -->
+        <ui:VisualElement name="modal-layer" class="modal-layer">
+
+            <!-- Subpanel: Opciones -->
+            <ui:VisualElement name="options-panel" class="modal-panel is-hidden">
+                <ui:VisualElement class="modal-panel__accent" picking-mode="Ignore" />
+                <ui:Label text="CONFIGURACIÓN" class="modal-panel__eyebrow" />
+                <ui:Label text="Opciones" class="modal-panel__title" />
+                <ui:Label text="Ajusta la experiencia a tu manera. Los cambios se aplican al instante." class="modal-panel__description" />
+
+                <ui:VisualElement class="settings">
+
+                    <ui:VisualElement class="setting">
+                        <ui:VisualElement class="setting__header">
+                            <ui:Label text="Volumen general" class="setting__label" />
+                            <ui:Label name="volume-value" text="80%" class="setting__value" />
+                        </ui:VisualElement>
+                        <ui:Slider name="slider-volume" class="menu-slider" low-value="0" high-value="100" value="80" tooltip="Volumen general del juego" />
+                        <ui:Label text="Afecta a todos los sonidos del juego." class="setting__help" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="setting">
+                        <ui:VisualElement class="setting__header">
+                            <ui:Label text="Calidad gráfica" class="setting__label" />
+                            <ui:Label name="quality-value" text="Alto" class="setting__value" />
+                        </ui:VisualElement>
+                        <ui:Slider name="slider-quality" class="menu-slider" low-value="0" high-value="2" value="2" tooltip="Nivel de calidad gráfica" />
+                        <ui:Label text="Bajo, medio o alto. Se ajusta al nivel de calidad de Unity." class="setting__help" />
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+
+                <ui:VisualElement class="modal-actions">
+                    <ui:Button name="btn-options-reset" text="Restablecer" class="button button--ghost" />
+                    <ui:Button name="btn-options-back" text="Volver" class="button button--primary" />
+                </ui:VisualElement>
+
+                <ui:Label text="También puedes pulsar Esc para volver." class="modal-panel__footnote" />
+            </ui:VisualElement>
+
+            <!-- Subpanel: Créditos -->
+            <ui:VisualElement name="credits-panel" class="modal-panel is-hidden">
+                <ui:VisualElement class="modal-panel__accent" picking-mode="Ignore" />
+                <ui:Label text="PROYECTO FINAL · GPC" class="modal-panel__eyebrow" />
+                <ui:Label text="Créditos" class="modal-panel__title" />
+                <ui:Label text="Un pequeño valle toon hecho con cariño, agua y unos cuantos árboles." class="modal-panel__description" />
+
+                <ui:VisualElement class="credits-list">
+                    <ui:VisualElement class="credit-row">
+                        <ui:Label text="Dirección y desarrollo" class="credit-row__role" />
+                        <ui:Label text="Equipo JuegoGPC" class="credit-row__name" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="credit-row">
+                        <ui:Label text="Arte 3D y escenario" class="credit-row__role" />
+                        <ui:Label text="Villa Toon · Río y puente" class="credit-row__name" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="credit-row">
+                        <ui:Label text="Motor y herramientas" class="credit-row__role" />
+                        <ui:Label text="Unity 6 · URP · UI Toolkit" class="credit-row__name" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="credit-row">
+                        <ui:Label text="Agradecimientos" class="credit-row__role" />
+                        <ui:Label text="Comunidad de Unity" class="credit-row__name" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <ui:VisualElement class="modal-actions">
+                    <ui:Button name="btn-credits-back" text="Volver" class="button button--primary" />
+                </ui:VisualElement>
+
+                <ui:Label text="Gracias por jugar." class="modal-panel__footnote" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

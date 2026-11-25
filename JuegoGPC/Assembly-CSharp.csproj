@@ -52,11 +52,16 @@
     <Compile Include="Assets\Script\VillaVida.cs" />
     <Compile Include="Assets\Script\CicloDiaNoche.cs" />
     <Compile Include="Assets\Script\PlayerCameraFollow.cs" />
+    <Compile Include="Assets\UI\MainMenu\MainMenuController.cs" />
     <Compile Include="Assets\Script\EstacionVida.cs" />
     <Compile Include="Assets\InputSystem_Actions.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Script\GeneradorEstacionEspacialToon.cs" />
     <Compile Include="Assets\Script\PlayerMovement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\UI\MainMenu\MainMenu.uxml" />
+    <None Include="Assets\UI\MainMenu\MainMenu.uss" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

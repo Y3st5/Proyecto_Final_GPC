@@ -1,0 +1,679 @@
+/* ============================================================================
+   MainMenu.uss  —  JuegoGPC
+   Estética Toon / Anime natural · Unity 6 · UI Toolkit
+   ----------------------------------------------------------------------------
+   Paleta: azul noche translúcido, texto claro, turquesa/agua y detalles dorados.
+   Nota: UI Toolkit no soporta box-shadow ni backdrop-filter; el efecto cristal
+   se consigue con fondos translúcidos, bordes suaves y halos decorativos.
+   ============================================================================ */
+
+/* ---------------------------------------------------------------------------
+   Variables de tema (se heredan a todos los descendientes del menú)
+   --------------------------------------------------------------------------- */
+.menu-root {
+    --color-bg-panel: rgba(15, 23, 32, 0.72);
+    --color-bg-panel-strong: rgba(15, 23, 32, 0.94);
+    --color-bg-modal: rgba(4, 8, 12, 0.62);
+    --color-surface: rgba(248, 250, 252, 0.045);
+    --color-surface-strong: rgba(248, 250, 252, 0.09);
+    --color-hover: rgba(56, 189, 248, 0.14);
+    --color-active: rgba(45, 212, 191, 0.20);
+
+    --color-text: #F8FAFC;
+    --color-muted: rgba(248, 250, 252, 0.64);
+    --color-faint: rgba(248, 250, 252, 0.38);
+
+    --color-accent: #38BDF8;
+    --color-teal: #2DD4BF;
+    --color-teal-light: #5EEAD4;
+    --color-gold: #FCD34D;
+
+    --color-border: rgba(248, 250, 252, 0.10);
+    --color-border-strong: rgba(56, 189, 248, 0.38);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+
+    --panel-width: 520px;
+    --transition-fast: 160ms;
+    --transition-base: 220ms;
+}
+
+/* ---------------------------------------------------------------------------
+   Raíz del menú
+   --------------------------------------------------------------------------- */
+.menu-root {
+    flex-grow: 1;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--color-text);
+    opacity: 1;
+
+    transition-property: opacity;
+    transition-duration: 350ms;
+    transition-timing-function: ease-out;
+}
+
+/* Fundido de salida hacia la escena de juego */
+.menu-root.is-leaving {
+    opacity: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Panel lateral (efecto cristal)
+   --------------------------------------------------------------------------- */
+.side-panel {
+    width: var(--panel-width);
+    min-width: 440px;
+    max-width: 560px;
+    height: 100%;
+    flex-shrink: 0;
+    flex-direction: column;
+
+    padding: 48px 52px 32px 52px;
+
+    background-color: var(--color-bg-panel);
+    border-right-width: 1px;
+    border-right-color: rgba(45, 212, 191, 0.24);
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Halos decorativos que sustituyen al desenfoque de fondo */
+.side-panel__glow {
+    position: absolute;
+    top: -140px;
+    left: -160px;
+
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+
+    background-color: rgba(45, 212, 191, 0.10);
+}
+
+.side-panel__glow--warm {
+    top: auto;
+    left: auto;
+    right: -90px;
+    bottom: -130px;
+
+    width: 280px;
+    height: 280px;
+
+    background-color: rgba(252, 211, 77, 0.055);
+}
+
+.side-panel__content {
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ---------------------------------------------------------------------------
+   Marca
+   --------------------------------------------------------------------------- */
+.brand {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 34px;
+}
+
+.brand__mark {
+    width: 42px;
+    height: 42px;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 12px;
+    border-radius: 13px;
+    border-width: 1px;
+    border-color: rgba(45, 212, 191, 0.42);
+
+    background-color: rgba(45, 212, 191, 0.12);
+}
+
+.brand__mark-text {
+    font-size: 10px;
+    -unity-font-style: bold;
+    letter-spacing: 1px;
+    color: var(--color-teal);
+}
+
+.brand__text {
+    flex-direction: column;
+}
+
+.brand__eyebrow {
+    font-size: 9px;
+    letter-spacing: 2.4px;
+    color: var(--color-faint);
+    margin-bottom: 3px;
+}
+
+.brand__name {
+    font-size: 13px;
+    -unity-font-style: bold;
+    letter-spacing: 1.4px;
+    color: var(--color-text);
+}
+
+/* ---------------------------------------------------------------------------
+   Título principal
+   --------------------------------------------------------------------------- */
+.hero {
+    flex-shrink: 0;
+    margin-bottom: 4px;
+}
+
+.hero__rule {
+    width: 48px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--color-teal);
+    margin-bottom: 22px;
+}
+
+.hero__title-row {
+    flex-direction: row;
+    align-items: flex-end;
+    margin-bottom: 4px;
+}
+
+.hero__title {
+    font-size: 56px;
+    -unity-font-style: bold;
+    letter-spacing: -1.2px;
+    color: var(--color-text);
+}
+
+.hero__title--accent {
+    color: var(--color-accent);
+    margin-left: 8px;
+}
+
+.hero__subtitle {
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    color: var(--color-accent);
+    margin-bottom: 16px;
+}
+
+.hero__description {
+    max-width: 390px;
+    font-size: 13px;
+    white-space: normal;
+    color: var(--color-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Botones de navegación
+   --------------------------------------------------------------------------- */
+.nav {
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.menu-button {
+    height: 68px;
+    flex-direction: row;
+    align-items: center;
+
+    margin: 0 0 10px 0;
+    padding: 0 18px 0 16px;
+
+    border-width: 1px;
+    border-color: var(--color-border);
+    border-left-width: 3px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-radius: var(--radius-md);
+
+    background-color: var(--color-surface);
+    color: var(--color-text);
+
+    transition-property: translate, scale, background-color, border-color;
+    transition-duration: 180ms;
+    transition-timing-function: ease-out;
+}
+
+.menu-button:hover {
+    translate: 8px 0;
+    scale: 1.012 1.012;
+    background-color: var(--color-hover);
+    border-color: var(--color-border-strong);
+    border-left-color: var(--color-teal);
+}
+
+.menu-button:active {
+    translate: 6px 0;
+    scale: 0.994 0.994;
+    background-color: var(--color-active);
+    border-left-color: var(--color-gold);
+}
+
+.menu-button:focus {
+    border-color: var(--color-border-strong);
+    border-left-color: var(--color-gold);
+}
+
+.menu-button:disabled {
+    opacity: 0.45;
+}
+
+/* Botón principal (Jugar) */
+.menu-button--primary {
+    background-color: rgba(56, 189, 248, 0.14);
+    border-color: rgba(56, 189, 248, 0.28);
+    border-left-color: var(--color-teal);
+}
+
+.menu-button--primary:hover {
+    background-color: rgba(56, 189, 248, 0.22);
+    border-color: rgba(94, 234, 212, 0.55);
+    border-left-color: var(--color-teal-light);
+}
+
+.menu-button__index {
+    width: 28px;
+    flex-shrink: 0;
+    font-size: 10px;
+    -unity-font-style: bold;
+    letter-spacing: 0.6px;
+    color: var(--color-faint);
+    transition-property: color;
+    transition-duration: var(--transition-fast);
+}
+
+.menu-button__label {
+    flex-grow: 1;
+    flex-shrink: 0;
+    font-size: 17px;
+    -unity-font-style: bold;
+    letter-spacing: 0.2px;
+    color: var(--color-text);
+    transition-property: color;
+    transition-duration: var(--transition-fast);
+}
+
+.menu-button__hint {
+    flex-shrink: 0;
+    font-size: 10px;
+    letter-spacing: 0.4px;
+    color: var(--color-faint);
+    margin-right: 12px;
+    transition-property: color;
+    transition-duration: var(--transition-fast);
+}
+
+.menu-button__arrow {
+    width: 18px;
+    font-size: 20px;
+    color: var(--color-accent);
+
+    opacity: 0;
+    translate: -6px 0;
+    transition-property: opacity, translate, color;
+    transition-duration: 180ms;
+    transition-timing-function: ease-out;
+}
+
+.menu-button:hover .menu-button__index {
+    color: var(--color-gold);
+}
+
+.menu-button:hover .menu-button__label {
+    color: #FFFFFF;
+}
+
+.menu-button:hover .menu-button__hint {
+    color: var(--color-muted);
+}
+
+.menu-button:hover .menu-button__arrow {
+    opacity: 1;
+    translate: 0 0;
+    color: var(--color-teal-light);
+}
+
+.menu-button--primary .menu-button__arrow {
+    opacity: 0.65;
+    translate: 0 0;
+}
+
+.menu-button--primary:hover .menu-button__arrow {
+    opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Pie del panel
+   --------------------------------------------------------------------------- */
+.side-footer-group {
+    flex-shrink: 0;
+}
+
+.side-footer {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 16px;
+    border-top-width: 1px;
+    border-top-color: var(--color-border);
+}
+
+.side-footer__version {
+    font-size: 11px;
+    color: var(--color-muted);
+}
+
+.side-footer__dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--color-teal);
+    margin: 0 10px;
+}
+
+.side-footer__scene {
+    font-size: 9px;
+    letter-spacing: 1.4px;
+    color: var(--color-faint);
+}
+
+.side-hint {
+    font-size: 10px;
+    letter-spacing: 0.3px;
+    color: var(--color-faint);
+    margin-top: 10px;
+}
+
+/* ---------------------------------------------------------------------------
+   Chips informativos sobre la escena
+   --------------------------------------------------------------------------- */
+.scene-chip {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+
+    flex-direction: row;
+    align-items: center;
+
+    padding: 9px 14px;
+    border-radius: 999px;
+    border-width: 1px;
+    border-color: var(--color-border);
+
+    background-color: rgba(15, 23, 32, 0.52);
+}
+
+.scene-chip__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-teal);
+    margin-right: 8px;
+}
+
+.scene-chip__label {
+    font-size: 9px;
+    letter-spacing: 1.4px;
+    color: var(--color-muted);
+}
+
+.corner-note {
+    position: absolute;
+    right: 32px;
+    bottom: 28px;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--color-faint);
+}
+
+/* ---------------------------------------------------------------------------
+   Capa modal
+   --------------------------------------------------------------------------- */
+.modal-layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--color-bg-modal);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+}
+
+.modal-layer.is-open {
+    opacity: 1;
+}
+
+.is-hidden {
+    display: none;
+}
+
+.modal-panel {
+    width: 560px;
+    max-width: 90%;
+    padding: 34px 38px 28px 38px;
+
+    flex-direction: column;
+
+    background-color: var(--color-bg-panel-strong);
+    border-width: 1px;
+    border-color: rgba(56, 189, 248, 0.22);
+    border-radius: var(--radius-lg);
+
+    opacity: 0;
+    scale: 0.97 0.97;
+    transition-property: opacity, scale;
+    transition-duration: var(--transition-base);
+    transition-timing-function: ease-out;
+}
+
+.modal-layer.is-open .modal-panel {
+    opacity: 1;
+    scale: 1 1;
+}
+
+.modal-panel__accent {
+    width: 54px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--color-teal);
+    margin-bottom: 20px;
+}
+
+.modal-panel__eyebrow {
+    font-size: 9px;
+    letter-spacing: 2.2px;
+    color: var(--color-accent);
+    margin-bottom: 6px;
+}
+
+.modal-panel__title {
+    font-size: 32px;
+    -unity-font-style: bold;
+    letter-spacing: -0.4px;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+.modal-panel__description {
+    max-width: 440px;
+    font-size: 12px;
+    white-space: normal;
+    color: var(--color-muted);
+    margin-bottom: 26px;
+}
+
+.modal-panel__footnote {
+    font-size: 10px;
+    color: var(--color-faint);
+    margin-top: 16px;
+}
+
+/* ---------------------------------------------------------------------------
+   Ajustes (sliders)
+   --------------------------------------------------------------------------- */
+.settings {
+    flex-direction: column;
+}
+
+.setting {
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.setting__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.setting__label {
+    font-size: 13px;
+    color: var(--color-text);
+}
+
+.setting__value {
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: var(--color-teal);
+}
+
+.setting__help {
+    font-size: 10px;
+    color: var(--color-faint);
+    margin-top: 8px;
+}
+
+.menu-slider {
+    margin: 0;
+}
+
+.menu-slider .unity-base-slider__tracker {
+    height: 6px;
+    border-radius: 999px;
+    background-color: rgba(248, 250, 252, 0.16);
+}
+
+.menu-slider .unity-base-slider__drag-container {
+    height: 22px;
+}
+
+.menu-slider .unity-base-slider__dragger {
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    background-color: var(--color-teal);
+    border-width: 3px;
+    border-color: #0F1720;
+}
+
+.menu-slider .unity-base-slider__dragger:hover {
+    background-color: var(--color-gold);
+}
+
+/* ---------------------------------------------------------------------------
+   Botones de los paneles modales
+   --------------------------------------------------------------------------- */
+.modal-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.button {
+    height: 46px;
+    min-width: 118px;
+    padding: 0 22px;
+    margin-left: 10px;
+
+    border-width: 1px;
+    border-color: var(--color-border);
+    border-radius: 12px;
+
+    background-color: var(--color-surface);
+    color: var(--color-text);
+
+    font-size: 13px;
+    -unity-font-style: bold;
+    letter-spacing: 0.3px;
+
+    transition-property: translate, scale, background-color, border-color, color;
+    transition-duration: var(--transition-fast);
+    transition-timing-function: ease-out;
+}
+
+.button:hover {
+    translate: 0 -2px;
+    background-color: var(--color-surface-strong);
+    border-color: var(--color-border-strong);
+}
+
+.button:active {
+    translate: 0 0;
+    scale: 0.98 0.98;
+}
+
+.button:focus {
+    border-color: var(--color-gold);
+}
+
+.button--primary {
+    background-color: var(--color-teal);
+    border-color: rgba(0, 0, 0, 0);
+    color: #042F2E;
+}
+
+.button--primary:hover {
+    background-color: var(--color-teal-light);
+    border-color: rgba(153, 246, 228, 0.85);
+    color: #042F2E;
+}
+
+.button--ghost {
+    color: var(--color-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Créditos
+   --------------------------------------------------------------------------- */
+.credits-list {
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.credit-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 0;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--color-border);
+}
+
+.credit-row__role {
+    font-size: 11px;
+    letter-spacing: 0.3px;
+    color: var(--color-muted);
+}
+
+.credit-row__name {
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: var(--color-text);
+}
